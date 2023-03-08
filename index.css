@@ -1,0 +1,13 @@
+.link-wrapper{
+	position: relative;
+}
+.quickView{
+	position: absolute;
+	inset-block-end: 0px;
+	inset-inline-start: 0px;
+	width:100%;
+	text-align: center;
+	background-color: #6E9277;
+	color: #ffffff;
+	height: 0px;
+}
