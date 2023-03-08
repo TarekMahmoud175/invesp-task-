@@ -1,6 +1,17 @@
+.body{
+	position:relative;
+}
+
+.modal{
+	position:absolute;
+	inset-block-start: 50%;
+	inset-inline-start: 25%;
+}
+
 .link-wrapper{
 	position: relative;
 }
+
 .quickView{
 	position: absolute;
 	inset-block-end: 0px;
