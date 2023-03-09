@@ -27,9 +27,12 @@
 	display: none;
 	width:50vw;
 	/*height:600px;*/
+	overflow-y: auto;
 	z-index: 100;
-	padding: 15px;
+	padding: 30px 15px;
 }
+
+
 
 .modal-header{
 	display: flex;
@@ -72,11 +75,11 @@
 	justify-content: center;
 	width: 100%;	
 	overflow: visible;
+	height: 100px;
+	flex-wrap: wrap;
 }
 
-.dots{
-	height: 100px;
-}
+
 
 .dot img{
 	width:90px;
@@ -115,8 +118,14 @@
 	z-index: 10;
 	height: 300vh;
 	width: 100vw;
-	position: absolute;
+	position: fixed;
 	inset-block-start: 0px;
 	inset-inline-start: 0px;
 	
+}
+
+@media (max-width:768px){
+	.modal{
+		width:90vw !important;
+	}
 }
