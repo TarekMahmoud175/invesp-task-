@@ -84,28 +84,31 @@ element.classList.add("active-dot")
 function ZoomImage(){
 const container = document.querySelectorAll('.shown-img')[0];
 const image = document.querySelectorAll('.shown-img img')[0];
+if(container){
+	container.addEventListener('mousemove', (event) => {
+	  const x = event.clientX - container.offsetLeft;
+	  const y = event.clientY - container.offsetTop;
+	  const centerX = container.offsetWidth / 2;
+	  const centerY = container.offsetHeight / 2;
+	  const deltaX = (x - centerX) / centerX;
+	  const deltaY = (y - centerY) / centerY;
+	  const scale = 1.5;
+	  image.style.transformOrigin = `${deltaX * scale * 50 + 50}% ${deltaY * scale * 50 + 50}%`;
+	  image.style.transform = `scale(${scale})`;
+	});	
 
-container.addEventListener('mousemove', (event) => {
-  const x = event.clientX - container.offsetLeft;
-  const y = event.clientY - container.offsetTop;
-  const centerX = container.offsetWidth / 2;
-  const centerY = container.offsetHeight / 2;
-  const deltaX = (x - centerX) / centerX;
-  const deltaY = (y - centerY) / centerY;
-  const scale = 1.5;
-  image.style.transformOrigin = `${deltaX * scale * 50 + 50}% ${deltaY * scale * 50 + 50}%`;
-  image.style.transform = `scale(${scale})`;
-});	
-
-container.addEventListener('mouseleave', () => {
-  image.style.transformOrigin = '50% 50%';
-  image.style.transform = 'scale(1)';
-});
+	container.addEventListener('mouseleave', () => {
+	  image.style.transformOrigin = '50% 50%';
+	  image.style.transform = 'scale(1)';
+	});
+}
 }
 
 
 async function addModalElement(link=""){
 let body = document.querySelectorAll("body")[0]
+let shadeLayer = document.createElement("div")
+shadeLayer.classList.add("layer")
 let modal = document.createElement("div")
 modal.classList.add("modal")
 let html= modalHeader
@@ -113,6 +116,7 @@ let carouselHtml = await makeModalCarousel(link)
 modal.innerHTML= html + carouselHtml
 modal.style.display="block"
 body.appendChild(modal)
+body.appendChild(shadeLayer)
 // close modal icon listener 
 document.querySelectorAll(".close-modal-icon")[0].addEventListener("click",RemoveModalElement)
 ZoomImage()
@@ -122,7 +126,9 @@ ZoomImage()
 function RemoveModalElement(){
 let body = document.querySelectorAll("body")[0]
 let modal = document.querySelectorAll(".modal")[0]
+let shadeLayer = document.querySelectorAll(".layer")[0]
 if(modal) body.removeChild(modal);
+if(shadeLayer) body.removeChild(shadeLayer)
 }
 
 
