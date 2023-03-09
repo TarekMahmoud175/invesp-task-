@@ -26,7 +26,7 @@
 	background-color: #ffffff;
 	display: none;
 	width:50vw;
-	height:600px;
+	/*height:600px;*/
 	z-index: 100;
 	padding: 15px;
 }
@@ -42,8 +42,8 @@
 }
 
 .close-modal-icon{
-	width: 15px;
-	height: 15px;
+	width: 20px;
+	height: 20px;
 	cursor: pointer;
 }
 
@@ -68,20 +68,42 @@
 }
 .dots{
 	display:flex;
-	align-items: center;
+	/*align-items: center;*/
 	justify-content: center;
 	width: 100%;	
 	overflow: visible;
 }
 
+.dots{
+	height: 100px;
+}
+
 .dot img{
-	width:60px;
+	width:90px;
 	height: 100%;
 	margin-block-start:10px;
 	margin-inline-start: 10px;
-	object-fit: contain;
+	object-fit: cover;
 }
 
 .active-dot{
-	border: 3.25px solid #000;
+	border: 3px solid #000;
+}
+
+
+
+.shown-img {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+}
+
+.shown-img img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: zoom;
+  transition: transform 0.3s ease-in-out;
 }

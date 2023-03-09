@@ -81,7 +81,27 @@ lastImg.classList.remove("active-dot")
 element.classList.add("active-dot")
 }
 
+function ZoomImage(){
+const container = document.querySelectorAll('.shown-img')[0];
+const image = document.querySelectorAll('.shown-img img')[0];
 
+container.addEventListener('mousemove', (event) => {
+  const x = event.clientX - container.offsetLeft;
+  const y = event.clientY - container.offsetTop;
+  const centerX = container.offsetWidth / 2;
+  const centerY = container.offsetHeight / 2;
+  const deltaX = (x - centerX) / centerX;
+  const deltaY = (y - centerY) / centerY;
+  const scale = 1.5;
+  image.style.transformOrigin = `${deltaX * scale * 50 + 50}% ${deltaY * scale * 50 + 50}%`;
+  image.style.transform = `scale(${scale})`;
+});	
+
+container.addEventListener('mouseleave', () => {
+  image.style.transformOrigin = '50% 50%';
+  image.style.transform = 'scale(1)';
+});
+}
 
 
 async function addModalElement(link=""){
@@ -95,6 +115,7 @@ modal.style.display="block"
 body.appendChild(modal)
 // close modal icon listener 
 document.querySelectorAll(".close-modal-icon")[0].addEventListener("click",RemoveModalElement)
+ZoomImage()
 
 }
 
@@ -104,12 +125,15 @@ let modal = document.querySelectorAll(".modal")[0]
 if(modal) body.removeChild(modal);
 }
 
+
+
 function addBtnEvent(link=""){
 let btn = document.querySelectorAll(".quickView")[0]
 btn.addEventListener("click",function(e){
 	 e.stopPropagation();
 	 e.preventDefault();
 	 addModalElement(link)
+	 ZoomImage()
 })
 }
 
